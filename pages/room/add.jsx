@@ -113,7 +113,7 @@ export default function Add() {
               <button
                 onClick={addImage}
                 type="button"
-                className="p-2 bg-[#ff385c] text-white rounded-full text-sm"
+                className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#9b5cff] text-white font-medium shadow-md hover:scale-110 hover:shadow-lg transition-transform duration-300"
               >
                 Add image link
               </button>
@@ -197,11 +197,11 @@ export default function Add() {
           <button
             type="submit"
             className={`flex flex-row justify-center items-center
-            w-full text-white text-md bg-[#ff385c]
+            w-full text-white font-bold text-md bg-[#7c3aed]
             py-2 px-5 rounded-full drop-shadow-xl hover:bg-white
             border-transparent border
-            hover:hover:text-[#ff385c]
-            hover:border-[#ff385c]
+            hover:hover:text-[#7c3aed]
+            hover:border-[#7c3aed]
             mt-5 transition-all duration-500 ease-in-out ${
               !address ? 'opacity-50 cursor-not-allowed' : ''
             }`}
@@ -214,3 +214,4 @@ export default function Add() {
     </div>
   )
 }
+//from-[#7c3aed] to-

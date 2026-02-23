@@ -3,11 +3,8 @@ const fs = require('fs')
 
 async function deployContract() {
   let contract
-  const taxPercent = 7
-  const securityFeePercent = 5
-
   try {
-    contract = await ethers.deployContract('DappBnb', [taxPercent, securityFeePercent])
+    contract = await ethers.deployContract('fyp_contract')
     await contract.waitForDeployment()
 
     console.log('Contracts deployed successfully.')
@@ -22,7 +19,7 @@ async function saveContractAddress(contract) {
   try {
     const address = JSON.stringify(
       {
-        dappBnbContract: contract.target,
+        de_rentersContract: contract.target,
       },
       null,
       4

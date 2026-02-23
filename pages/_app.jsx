@@ -25,7 +25,6 @@ export default function App({ Component, pageProps }) {
           <div className="relative h-screen min-w-screen">
             <Header />
             <Component {...pageProps} />
-            <div className="h-20"></div>
             <Footer />
           </div>
 

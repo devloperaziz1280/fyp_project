@@ -10,7 +10,6 @@ import { bookApartment } from '@/services/blockchain'
 const Calendar = ({ apartment, timestamps }) => {
   const [checkInDate, setCheckInDate] = useState(null)
   const [checkOutDate, setCheckOutDate] = useState(null)
-  const { securityFee } = useSelector((states) => states.globalStates)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -27,9 +26,7 @@ const Calendar = ({ apartment, timestamps }) => {
     const params = {
       aid: apartment?.id,
       timestamps: timestampArray,
-      amount:
-        apartment?.price * timestampArray.length +
-        (apartment?.price * timestampArray.length * securityFee) / 100,
+      amount: apartment?.price * timestampArray.length,
     }
 
     await toast.promise(
@@ -93,14 +90,17 @@ const Calendar = ({ apartment, timestamps }) => {
         className="rounded-lg w-full border border-gray-400 p-2"
       />
       <button
-        className="p-2 border-none bg-gradient-to-l from-pink-600
+        className="p-2 border-none bg-gradient-to-l from-[#9b5cff]
         to-gray-600 text-white w-full rounded-md focus:outline-none
-        focus:ring-0"
+        focus:ring-0 hover:scale-110 transition-transform duration-500"
       >
         Book
       </button>
 
-      <Link href={`/room/bookings/${apartment?.id}`} className="text-pink-500">
+      <Link
+        href={`/room/bookings/${apartment?.id}`}
+        className="text-[#9b5cff] hover:text-gray-500 text-black hover:scale-110 transition-transform duration-500 text-center"
+      >
         Check your bookings
       </Link>
     </form>

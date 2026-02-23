@@ -1,6 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Image from 'next/image'
 import React from 'react'
+import { FaWallet } from 'react-icons/fa'
 
 const ConnectBtn = () => {
   return (
@@ -36,13 +37,14 @@ const ConnectBtn = () => {
               if (!connected) {
                 return (
                   <button
-                    className="bg-transparent border border-gray-300 hover:bg-red-600
-                        py-2 px-6 text-black hover:text-white rounded-full
-                        transition duration-300 ease-in-out"
+                    className="bg-[#7c3aed] hover:scale-105
+                    py-2 px-6 text-white rounded-lg flex items-center space-x-2
+                      transition-all duration-300 ease-in-out font-mono font-semibold text-sm group"
                     onClick={openConnectModal}
                     type="button"
                   >
-                    Connect Wallet
+                    <FaWallet className="text-lg" />
+                    <span>Connect Wallet</span>
                   </button>
                 )
               }
@@ -50,9 +52,10 @@ const ConnectBtn = () => {
               if (chain.unsupported) {
                 return (
                   <button
-                    className="bg-transparent border border-gray-300 hover:bg-red-600
-                        py-2 px-6 text-black hover:text-white rounded-full
-                        transition duration-300 ease-in-out"
+                    className="bg-red-500 hover:bg-red-600
+                        py-2 px-6 text-white rounded-lg
+                        transition duration-300 ease-in-out
+                        font-medium text-sm"
                     onClick={openChainModal}
                     type="button"
                   >
@@ -66,9 +69,10 @@ const ConnectBtn = () => {
                   <button
                     onClick={openChainModal}
                     style={{ display: 'flex', alignItems: 'center' }}
-                    className="bg-transparent border border-gray-300 hover:bg-red-600
-                    py-2 px-6 text-black hover:text-white rounded-full
-                    transition duration-300 ease-in-out"
+                    className="bg-gray-100 hover:bg-gray-200
+                    py-2 px-6 text-gray-700 rounded-lg
+                    transition duration-300 ease-in-out
+                    font-medium text-sm"
                     type="button"
                   >
                     {chain.hasIcon && (
@@ -96,9 +100,10 @@ const ConnectBtn = () => {
                   </button>
 
                   <button
-                    className="bg-transparent border border-gray-300 hover:bg-red-600
-                    py-2 px-6 text-black hover:text-white rounded-full
-                    transition duration-300 ease-in-out"
+                    className="bg-gray-100 hover:bg-gray-200
+                    py-2 px-6 text-gray-700 rounded-lg
+                    transition duration-300 ease-in-out
+                    font-medium text-sm"
                     onClick={openAccountModal}
                     type="button"
                   >

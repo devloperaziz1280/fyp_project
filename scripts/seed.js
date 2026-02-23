@@ -99,19 +99,19 @@ async function bookApartments(contract, aid, dates) {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 async function main() {
-  let dappBnbContract
+  let fypContract
 
   try {
     const contractAddresses = fs.readFileSync('./contracts/contractAddress.json', 'utf8')
-    const { dappBnbContract: dappBnbAddress } = JSON.parse(contractAddresses)
+    const { de_rentersContract: fypContractAddress } = JSON.parse(contractAddresses)
 
-    dappBnbContract = await ethers.getContractAt('DappBnb', dappBnbAddress)
+    fypContract = await ethers.getContractAt('fyp_contract', fypContractAddress)
     const dates1 = [1678492800000, 1678579200000, 1678665600000]
 
     // Process #1
     await Promise.all(
       generateFakeApartment(dataCount).map(async (apartment) => {
-        await createApartments(dappBnbContract, apartment)
+        await createApartments(fypContract, apartment)
       })
     )
 
@@ -122,7 +122,7 @@ async function main() {
       Array(dataCount)
         .fill()
         .map(async (_, i) => {
-          await bookApartments(dappBnbContract, i + 1, dates1)
+          await bookApartments(fypContract, i + 1, dates1)
         })
     )
 

@@ -81,14 +81,14 @@ const TenantView = ({ booking, functions, owner }) => {
       {booking.tenant == owner && !booking.checked && !booking.cancelled && (
         <div className="flex space-x-2">
           <button
-            className="p-2 bg-green-500 text-white rounded-full text-sm px-4"
+            className="p-2 bg-green-500 text-white rounded-full text-sm px-4 hover:scale-110 transition-transform duration-500"
             onClick={functions.handleCheckIn}
           >
             Check In
           </button>
 
           <button
-            className="p-2 bg-red-500 text-white rounded-full text-sm px-4"
+            className="p-2 bg-red-500 text-white rounded-full text-sm px-4 hover:scale-110 transition-transform duration-500"
             onClick={functions.handleRefund}
           >
             Refund

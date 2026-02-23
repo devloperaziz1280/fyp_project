@@ -10,6 +10,16 @@ body {
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/*Global dark background and default text color so pages don't show white gaps
+@layer base {
+  body {
+    background: linear-gradient(135deg, #071029 0%, #0b173d 40%, #1e0f47 70%, #2a1f6f 100%);
+    color: #f3f4f6; /* same as Tailwind's gray-100 *
+    min-height: 100vh;
+  }
+}
+*/
+
 a {
   color: inherit;
   text-decoration: none;
@@ -17,4 +27,64 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes bounceSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
+}
+.animate-fade-in-delay {
+  animation: fadeIn 1.5s ease-out;
+}
+.animate-fade-in-delay-2 {
+  animation: fadeIn 2s ease-out;
+}
+.animate-bounce-slow {
+  animation: bounceSlow 2s infinite;
+}
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-out {
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+@keyframes fadeInOnce {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-once {
+  animation: fadeInOnce 1.5s ease-out forwards;
 }

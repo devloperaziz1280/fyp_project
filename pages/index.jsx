@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import { getApartments } from '@/services/blockchain'
 import { Category, Collection } from '@/components'
+import { Main } from '@/components/Main'
+//import { Main } from 'next/document'
 
-export default function Home({ apartmentsData }) {
+export default function Home() {
   return (
     <div>
       <Head>
@@ -11,17 +13,6 @@ export default function Home({ apartmentsData }) {
       </Head>
 
       <Category />
-      <Collection appartments={apartmentsData} />
     </div>
   )
-}
-
-export const getServerSideProps = async () => {
-  const apartmentsData = await getApartments()
-
-  return {
-    props: {
-      apartmentsData: JSON.parse(JSON.stringify(apartmentsData)),
-    },
-  }
 }

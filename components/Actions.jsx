@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useAccount } from 'wagmi'
 import { useRouter } from 'next/router'
-import { CiEdit } from 'react-icons/ci'
+// ...existing code...
 import { MdDeleteOutline } from 'react-icons/md'
 import { deleteApartment } from '@/services/blockchain'
 import { toast } from 'react-toastify'
@@ -35,18 +35,17 @@ const Actions = ({ apartment }) => {
       {address == apartment?.owner && (
         <>
           <Link
-            href={'/room/edit/' + apartment?.id}
+            // ...existing code...
             className="p-2 rounded-md shadow-lg border-[0.1px]
               border-gray-500 flex justify-start items-center space-x-1
-              bg-gray-500 hover:bg-transparent hover:text-gray-500 text-white"
+              bg-gray-500 hover:bg-transparent hover:text-gray-500 text-white hover:scale-110 transition-transform duration-500"
           >
-            <CiEdit size={15} />
-            <small>Edit</small>
+            // ...existing code...
           </Link>
           <button
             className="p-2 rounded-md shadow-lg border-[0.1px]
-              border-pink-500 flex justify-start items-center space-x-1
-              bg-pink-500 hover:bg-transparent hover:text-pink-500 text-white"
+              border-[#7c3aed] flex justify-start items-center space-x-1
+              bg-[#7c3aed] hover:scale-110 transition-transform duration-500 hover:bg-transparent hover:text-[#7c3aed] text-white"
             onClick={handleDelete}
           >
             <MdDeleteOutline size={15} />

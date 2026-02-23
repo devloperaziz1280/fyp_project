@@ -8,35 +8,13 @@ import {
   coinbaseWallet,
   rainbowWallet,
 } from '@rainbow-me/rainbowkit/wallets'
-import { mainnet, hardhat } from 'wagmi/chains'
+import { mainnet, hardhat, sepolia } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 import { SessionProvider } from 'next-auth/react'
 
-const bitfinity = {
-  id: 355113,
-  name: 'Bitfinity',
-  network: 'bitfinity',
-  iconUrl: 'https://bitfinity.network/logo.png',
-  iconBackground: '#000000',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'Bitfinity',
-    symbol: 'BFT',
-  },
-  rpcUrls: {
-    public: { http: ['https://testnet.bitfinity.network'] },
-    default: { http: ['https://testnet.bitfinity.network'] },
-  },
-  blockExplorers: {
-    default: { name: 'Bitfinity Block Explorer', url: 'https://explorer.bitfinity.network/' },
-    etherscan: { name: 'Bitfinity Block Explorer', url: 'https://explorer.bitfinity.network/' },
-  },
-  testnet: true,
-}
-
 const { chains, publicClient } = configureChains(
-  [mainnet, bitfinity, hardhat],
+  [mainnet, sepolia, hardhat],
   [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }), publicProvider()]
 )
 
@@ -61,13 +39,13 @@ const wagmiConfig = createConfig({
 })
 
 const demoAppInfo = {
-  appName: 'DappBnb dApp',
+  appName: 'de_renters dApp',
 }
 
 const getSiweMessageOptions = () => ({
   statement: `
   Once you're signed in, you'll be able to access all of our dApp's features.
-  Thank you for partnering with DappBnb!`,
+  Thank you for partnering with de_renters!`,
 })
 
 const Providers = ({ children, pageProps }) => {

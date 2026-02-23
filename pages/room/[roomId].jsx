@@ -8,7 +8,7 @@ import {
   getReviews,
   getApartment,
   getBookedDates,
-  getSecurityFee,
+  // ...existing code...
   getQualifiedReviewers,
 } from '@/services/blockchain'
 import { useAccount } from 'wagmi'
@@ -17,7 +17,7 @@ export default function Room({
   apartmentData,
   timestampsData,
   reviewsData,
-  securityFee,
+  // ...existing code...
   qualifiedReviewers,
 }) {
   const router = useRouter()
@@ -25,14 +25,14 @@ export default function Room({
   const dispatch = useDispatch()
   const { address } = useAccount()
 
-  const { setApartment, setTimestamps, setReviewModal, setReviews, setSecurityFee } = globalActions
+  const { setApartment, setTimestamps, setReviewModal, setReviews } = globalActions
   const { apartment, timestamps, reviews } = useSelector((states) => states.globalStates)
 
   useEffect(() => {
     dispatch(setApartment(apartmentData))
     dispatch(setTimestamps(timestampsData))
     dispatch(setReviews(reviewsData))
-    dispatch(setSecurityFee(securityFee))
+    // ...existing code...
   }, [
     dispatch,
     setApartment,
@@ -41,8 +41,8 @@ export default function Room({
     timestampsData,
     setReviews,
     reviewsData,
-    setSecurityFee,
-    securityFee,
+    // ...existing code...
+    // ...existing code...
   ])
 
   const handleReviewOpen = () => {
@@ -102,7 +102,7 @@ export const getServerSideProps = async (context) => {
   const timestampsData = await getBookedDates(roomId)
   const qualifiedReviewers = await getQualifiedReviewers(roomId)
   const reviewsData = await getReviews(roomId)
-  const securityFee = await getSecurityFee()
+  // ...existing code...
 
   return {
     props: {
@@ -110,7 +110,7 @@ export const getServerSideProps = async (context) => {
       timestampsData: JSON.parse(JSON.stringify(timestampsData)),
       reviewsData: JSON.parse(JSON.stringify(reviewsData)),
       qualifiedReviewers: JSON.parse(JSON.stringify(qualifiedReviewers)),
-      securityFee: JSON.parse(JSON.stringify(securityFee)),
+      // ...existing code...
     },
   }
 }

@@ -4,15 +4,13 @@ const { ethers } = require('hardhat')
 const toWei = (num) => ethers.parseEther(num.toString())
 const fromWei = (num) => ethers.formatEther(num)
 
-const dates1 = [1700140191726, 1700226628922, 1700313044089]
+const dates1 = [1768401127, 1768314727, 1768487527]
 const dates2 = [1678752000000, 1678838400000]
 
 describe('Contracts', () => {
   let contract, result
   const id = 1
   const bookingId = 0
-  const taxPercent = 7
-  const securityFee = 5
   const name = 'First apartment'
   const location = 'PHC'
   const newName = 'Update apartment'
@@ -29,9 +27,34 @@ describe('Contracts', () => {
   const newPrice = 1.3
 
   beforeEach(async () => {
-    ;[deployer, owner, tenant1, tenant2] = await ethers.getSigners()
-    contract = await ethers.deployContract('DappBnb', [taxPercent, securityFee])
-    await contract.waitForDeployment()
+    const network = await ethers.provider.getNetwork()
+    let deployed
+    if (network.chainId === 11155111) {
+      // Sepolia: use all three funded accounts
+      const provider = ethers.provider
+      const deployer = new ethers.Wallet(
+        '0x5c619cb572c35d910822c37cf3171b629b47e4ddd1a3563c02913903a9424df5',
+        provider
+      )
+      owner = new ethers.Wallet(
+        '0x3bb7a9e18dcecf6082c29c549566bb8a25cb12cbb56b13c9898cdb90fe886046',
+        provider
+      )
+      tenant1 = new ethers.Wallet(
+        '0xb002af2a456ffb6d97d11e17632a5a1e5d11233af8c3694a08719c4308a10c06',
+        provider
+      )
+      tenant2 = ethers.Wallet.createRandom().connect(provider) // fallback random, or add more funded if needed
+      deployed = await ethers.deployContract('fyp_contract', [], { signer: deployer })
+      await deployed.waitForDeployment()
+      contract = deployed.connect(deployer)
+    } else {
+      // Hardhat/localhost
+      ;[deployer, owner, tenant1, tenant2] = await ethers.getSigners()
+      deployed = await ethers.deployContract('fyp_contract')
+      await deployed.waitForDeployment()
+      contract = deployed.connect(deployer)
+    }
   })
 
   // describe('Apartment', () => {
@@ -97,7 +120,7 @@ describe('Contracts', () => {
           .connect(owner)
           .createAppartment(name, description, location, images.join(','), rooms, toWei(price))
 
-        const amount = price * dates1.length + (price * dates1.length * securityFee) / 100
+        const amount = price * dates1.length
         await contract.connect(tenant1).bookApartment(id, dates1, {
           value: toWei(amount),
         })
@@ -147,15 +170,8 @@ describe('Contracts', () => {
         expect(result.cancelled).to.be.equal(true)
       })
 
-      it('Should return the security fee', async () => {
-        result = await contract.securityFee()
-        expect(result).to.be.equal(securityFee)
-      })
-
-      it('Should return the tax percent', async () => {
-        result = await contract.taxPercent()
-        expect(result).to.be.equal(taxPercent)
-      })
+      // it('Should return the security fee', async () => {
+      // ...existing code...
     })
 
     describe('Failure', () => {
@@ -166,7 +182,7 @@ describe('Contracts', () => {
       })
 
       it('Should prevent booking with wrong id', async () => {
-        const amount = price * dates1.length + (price * dates1.length * securityFee) / 100
+        const amount = price * dates1.length
         await expect(
           contract.connect(tenant1).bookApartment(666, dates1, {
             value: toWei(amount),
@@ -177,7 +193,7 @@ describe('Contracts', () => {
       it('Should prevent booking with wrong pricing', async () => {
         await expect(
           contract.connect(tenant1).bookApartment(id, dates1, {
-            value: toWei(price * 0 + securityFee),
+            value: toWei(price * 0),
           })
         ).to.be.revertedWith('Insufficient fund!')
       })

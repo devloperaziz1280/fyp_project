@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 import { store } from '@/store'
 import { globalActions } from '@/store/globalSlices'
 import address from '@/contracts/contractAddress.json'
-import dappBnbAbi from '@/artifacts/contracts/DappBnb.sol/DappBnb.json'
+import de_rentersAbi from '@/artifacts/contracts/de_renters.sol/fyp_contract.json'
 
 const toWei = (num) => ethers.parseEther(num.toString())
 const fromWei = (num) => ethers.formatEther(num)
@@ -18,14 +18,14 @@ const getEthereumContracts = async () => {
   if (accounts?.length > 0) {
     const provider = new ethers.BrowserProvider(ethereum)
     const signer = await provider.getSigner()
-    const contracts = new ethers.Contract(address.dappBnbContract, dappBnbAbi.abi, signer)
+    const contracts = new ethers.Contract(address.de_rentersContract, de_rentersAbi.abi, signer)
 
     return contracts
   } else {
     const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_RPC_URL)
     const wallet = ethers.Wallet.createRandom()
     const signer = wallet.connect(provider)
-    const contracts = new ethers.Contract(address.dappBnbContract, dappBnbAbi.abi, signer)
+    const contracts = new ethers.Contract(address.de_rentersContract, de_rentersAbi.abi, signer)
 
     return contracts
   }
@@ -66,12 +66,6 @@ const getBookedDates = async (id) => {
   const bookings = await contract.getUnavailableDates(id)
   const timestamps = bookings.map((timestamp) => Number(timestamp))
   return timestamps
-}
-
-const getSecurityFee = async () => {
-  const contract = await getEthereumContracts()
-  const fee = await contract.securityFee()
-  return Number(fee)
 }
 
 const createApartment = async (apartment) => {
@@ -278,5 +272,5 @@ export {
   addReview,
   getReviews,
   getQualifiedReviewers,
-  getSecurityFee,
+  // ...existing code...
 }

@@ -11,9 +11,7 @@ export const globalActions = {
   setReviewModal: (state, action) => {
     state.reviewModal = action.payload
   },
-  setSecurityFee: (state, action) => {
-    state.securityFee = action.payload
-  },
+  // ...existing code...
   setBookings: (state, action) => {
     state.bookings = action.payload
   },
