@@ -4,5 +4,6 @@
   "prCreation": "not-pending",
   "labels": ["type: dependencies"],
   "schedule": ["every weekend"],
-  "automerge": true
+  "automerge": true,
+  "dependencyDashboard": true
 }
