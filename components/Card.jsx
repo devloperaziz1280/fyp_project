@@ -23,11 +23,7 @@ const Card = ({ appartment }) => {
           </p>
         </div>
         <div className="flex justify-between items-center text-sm">
-          <p className="text-gray-700">
-            {appartment.timestamp && appartment.timestamp !== 0
-              ? formatDate(appartment.timestamp)
-              : 'N/A'}
-          </p>
+          <p className="text-gray-700">{formatDate(appartment.timestamp)}</p>
           <b className="flex justify-start items-center space-x-1 font-semibold">
             <FaEthereum />
             <span>{appartment.price} Night</span>

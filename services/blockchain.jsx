@@ -1,6 +1,7 @@
 import { ethers } from 'ethers'
 import { store } from '@/store'
 import { globalActions } from '@/store/globalSlices'
+import { normalizeImages } from '@/utils/helper'
 import address from '@/contracts/contractAddress.json'
 import de_rentersAbi from '@/artifacts/contracts/de_renters.sol/fyp_contract.json'
 
@@ -232,7 +233,7 @@ const structureAppartments = (appartments) =>
     location: appartment.location,
     price: fromWei(appartment.price),
     deleted: appartment.deleted,
-    images: appartment.images.split(','),
+    images: normalizeImages(appartment.images),
     rooms: Number(appartment.rooms),
     timestamp: Number(appartment.timestamp),
     booked: appartment.booked,
