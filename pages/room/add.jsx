@@ -32,7 +32,21 @@ export default function Add() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!name || !location || !description || !rooms || links.length != 5 || !price) return
+
+    if (!address) {
+      toast.error('Please connect your wallet first')
+      return
+    }
+
+    if (links.length !== 5) {
+      toast.error('Please upload exactly 5 images')
+      return
+    }
+
+    if (!name || !location || !description || !rooms || !price) {
+      toast.error('Please fill in all fields')
+      return
+    }
 
     const params = {
       name,
@@ -47,7 +61,7 @@ export default function Add() {
       new Promise(async (resolve, reject) => {
         await createApartment(params)
           .then(async () => {
-            navigate.push('/')
+            navigate.push('/properties')
             resolve()
           })
           .catch(() => reject())
@@ -147,10 +161,11 @@ export default function Add() {
   }
 
   const uploadDisabled = uploading || links.length >= 5
+  const canSubmit = Boolean(address) && !uploading
 
   return (
-    <div className="h-screen flex justify-center mx-auto">
-      <div className="w-11/12 md:w-2/5 h-7/12 p-6">
+    <div className="flex w-full justify-center px-4 pb-32 pt-24">
+      <div className="w-full max-w-lg p-6">
         <form onSubmit={handleSubmit} className="flex flex-col">
           <div className="flex justify-center items-center">
             <p className="font-semibold text-black">Add Room</p>
@@ -323,16 +338,16 @@ export default function Add() {
 
           <button
             type="submit"
-            className={`flex flex-row justify-center items-center
+            className={`sticky bottom-24 z-10 flex flex-row justify-center items-center
             w-full text-white font-bold text-md bg-[#7c3aed]
-            py-2 px-5 rounded-full drop-shadow-xl hover:bg-white
+            py-3 px-5 rounded-full drop-shadow-xl hover:bg-white
             border-transparent border
             hover:hover:text-[#7c3aed]
             hover:border-[#7c3aed]
             mt-5 transition-all duration-500 ease-in-out ${
-              !address ? 'opacity-50 cursor-not-allowed' : ''
+              !canSubmit ? 'opacity-50 cursor-not-allowed' : ''
             }`}
-            disabled={!address}
+            disabled={!canSubmit}
           >
             Add Appartment
           </button>

@@ -5,6 +5,34 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 
+/**
+ * @title De_renters - Decentralized Rental Management System
+ * @author Aziz ur Rehman
+ * @author Luqman Ahmed
+ * @author Abdula Ansari
+ * @author Mohsin
+ *
+ * @notice Final Year Project (FYP) developed for SSUET Computer Engineering,
+ * Batch 2022F.
+ *
+ * @dev This smart contract provides a blockchain-based rental management
+ * system for handling apartment/property records securely and transparently.
+ *
+ * The contract uses OpenZeppelin libraries:
+ * - Ownable: Provides ownership-based access control.
+ * - Counters: Generates unique IDs for apartments.
+ * - ReentrancyGuard: Protects against reentrancy attacks.
+ *
+ * Team/Company:
+ * Gomal Design Studio
+ *
+ * Project:
+ * De_renters
+ *
+ * University:
+ * Sir Syed University of Engineering & Technology (SSUET)
+ */
+
 contract fyp_contract is Ownable, ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _totalAppartments;

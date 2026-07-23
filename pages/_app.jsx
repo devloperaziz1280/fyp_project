@@ -22,9 +22,11 @@ export default function App({ Component, pageProps }) {
     return (
       <Providers pageProps={pageProps}>
         <Provider store={store}>
-          <div className="relative h-screen min-w-screen">
+          <div className="relative min-h-screen min-w-screen">
             <Header />
-            <Component {...pageProps} />
+            <main className="min-h-[calc(100vh-5rem)]">
+              <Component {...pageProps} />
+            </main>
             <Footer />
           </div>
 
