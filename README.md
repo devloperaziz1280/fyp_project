@@ -69,3 +69,39 @@ Now, your application should be up and running.
 - 🎅 [TypeScript](https://www.typescriptlang.org/)
 - 🐻 [Solidity](https://soliditylang.org/)
 - 👀 [EthersJs](https://docs.ethers.io/v5/)
+
+## Setup — Environment variables
+
+Create a file named `.env.local` in the project root and add your private keys and API keys there (example below). The project reads `SEPOLIA_PRIVATE_KEY` from environment variables for deployments and Hardhat configuration.
+
+Example `.env.local`:
+
+```
+SEPOLIA_PRIVATE_KEY=0xYOUR_PRIVATE_KEY_HERE
+NEXT_PUBLIC_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_KEY
+NEXT_PUBLIC_ALCHEMY_ID=YOUR_ALCHEMY_KEY
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXT_PUBLIC_PINATA_API_KEY=your_pinata_api_key
+NEXT_PUBLIC_PINATA_API_SECRET=your_pinata_api_secret
+NEXT_PUBLIC_PINATA_JWT=your_pinata_jwt
+```
+
+Important:
+- Do NOT commit `.env.local` or any private keys to version control. Add `.env.local` to `.gitignore` if it isn’t already ignored.
+- Treat private keys and JWTs as sensitive secrets.
+
+## Deployment History
+
+The `de_renters` contract was deployed to Sepolia with the following address:
+
+- `de_rentersContract`: 0x58B451271412Bea09bBC5e0e62d1F9Fdb3277D4D
+
+Network: Sepolia
+Deployed on: 2026-08-14
+
+Keep this record for reference when interacting with the deployed contract in the frontend or scripts.
+ 
+Project: Final Year Project (FYP)
+Owner: Aziz Ur Rehman, Shaheed Zulfiqar Ali Bhutto University of Engineering and Technology (SSUET)
+Roll No.: 2022F-BCE-065
