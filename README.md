@@ -78,5 +78,6 @@ Deployed on: 2026-08-14
 Keep this record for reference when interacting with the deployed contract in the frontend or scripts.
  
 Project: Final Year Project (FYP)
-Owner: Aziz Ur Rehman, Shaheed Zulfiqar Ali Bhutto University of Engineering and Technology (SSUET)
+Owner: Aziz Ur Rehman, Sir Syed University of Engineering and Technology (SSUET)
+Department: Computer Enginnering 
 Roll No.: 2022F-BCE-065
