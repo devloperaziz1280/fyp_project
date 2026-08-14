@@ -97,12 +97,14 @@ const Calendar = ({ apartment, timestamps }) => {
         Book
       </button>
 
-      <Link
-        href={`/room/bookings/${apartment?.id}`}
-        className="text-[#9b5cff] hover:text-gray-500 text-black hover:scale-110 transition-transform duration-500 text-center"
-      >
-        Check your bookings
-      </Link>
+      {apartment?.id && (
+        <Link
+          href={`/room/bookings/${apartment.id}`}
+          className="text-[#9b5cff] hover:text-gray-500 text-black hover:scale-110 transition-transform duration-500 text-center"
+        >
+          Check your bookings
+        </Link>
+      )}
     </form>
   )
 }

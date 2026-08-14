@@ -68,7 +68,7 @@ const generateFakeApartment = (count) => {
       description,
       location,
       price: toWei(price),
-      images: images.join(', '),
+      images: images.join(','),
       rooms,
       owner,
       timestamp,
