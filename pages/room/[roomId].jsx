@@ -56,7 +56,7 @@ export default function Room({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="py-8 px-10 sm:px-20 md:px-32 space-y-8">
+      <div className="py-8 px-10 sm:px-20 md:px-32 space-y-8 pb-28">
         <Title apartment={apartment} />
 
         <ImageGrid

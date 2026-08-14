@@ -30,7 +30,7 @@ async function main() {
   console.log('Signer:', wallet.address)
   console.log('Balance (ETH):', ethers.formatEther(balance))
 
-  if (balance === 0n) {
+  if (balance === 0) {
     console.log('Skip write test: signer has no Sepolia ETH')
     return
   }

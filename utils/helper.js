@@ -11,6 +11,18 @@ export const formatDate = (timestamp) => {
   return date.toLocaleDateString('en-US', options)
 }
 
+export const truncate = (text, startChars, endChars, maxLength) => {
+  if (text.length > maxLength) {
+    let start = text.substring(0, startChars)
+    let end = text.substring(text.length - endChars, text.length)
+    while (start.length + end.length < maxLength) {
+      start = start + '.'
+    }
+    return start + end
+  }
+  return text
+}
+
 export const normalizeImages = (images) => {
   if (Array.isArray(images)) {
     return images.map((url) => String(url).trim()).filter(Boolean)
@@ -32,15 +44,3 @@ export const isIpfsUrl = (url) =>
     url.includes('gateway.pinata.cloud') ||
     url.includes('ipfs.io') ||
     url.includes('mypinata.cloud'))
-
-export const truncate = (text, startChars, endChars, maxLength) => {
-  if (text.length > maxLength) {
-    let start = text.substring(0, startChars)
-    let end = text.substring(text.length - endChars, text.length)
-    while (start.length + end.length < maxLength) {
-      start = start + '.'
-    }
-    return start + end
-  }
-  return text
-}
